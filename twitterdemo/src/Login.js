@@ -7,7 +7,7 @@ function Login() {
 
     // validation rules with Yup
     const formSchema = yup.object({
-        email: yup.email("Not a valid email").required("Email is required"),
+        email: yup.string().email("Not a valid email").required("Email is required"),
         password: yup.string().required("Password is required"),
         username: yup.string().required("Username is required").
             min(5, "no less than 5 schracters").
@@ -46,22 +46,29 @@ function Login() {
                         type={"text"}
                         placeholder="Enter the username"
                         name="username"
-                        value={formik.values.username}
                         onChange={formik.handleChange}
-                        error={formik.touched.password && Boolean(formik.errors.password)}
-                        helperText={formik.touched.password && formik.errors.password}
+                        error={Boolean(formik.touched.username && formik.errors.username)}
+                        helperText={formik.touched.username && formik.errors.username}
                     />
                     <TextField
                         variant='filled'
                         label="Email"
                         type={"email"}
+                        name="email"
                         placeholder="Enter the email"
+                        onChange={formik.handleChange}
+                        error={Boolean(formik.touched.email && formik.errors.email)}
+                        helperText={formik.touched.email && formik.errors.email}
                     />
                     <TextField
                         variant='filled'
                         label="Password"
                         type={"password"}
+                        name="password"
                         placeholder="Enter the password"
+                        onChange={formik.handleChange}
+                        error={Boolean(formik.touched.password && formik.errors.password)}
+                        helperText={formik.touched.password && formik.errors.password}
                     />
                     <Button type="submit" variant="contained">Login</Button>
                 </Stack>

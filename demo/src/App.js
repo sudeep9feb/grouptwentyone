@@ -1,34 +1,27 @@
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
 
-  function submitHandler(event){
+  const [starWarsData, setStarWarsData] = useState({})
+  const [count, setCount] = useState(1)
 
-  }
-
-  function handleChange(event){
-    // const [name,value] = event.target
-    console.log(event.target.name)
-    console.log(event.target.value)
-  }
-
+  console.log("Component rendered")
+  useEffect(function () {
+    console.log("use effect function ran")
+    fetch(`https://swapi.dev/api/people/${count}`)
+      .then(response => response.json())
+      .then(data => setStarWarsData(data))
+  }, [count])
 
   return (
     <div>
-        <form onSubmit={submitHandler}>
-          <input 
-            placeholder='First Name'
-            name="firstName"
-            onChange={handleChange}
-          />
-          <input 
-            placeholder='Last Name'
-            name="lastName"
-            onChange={handleChange}
-          />
-          <br/>
-          <button>Add Contact</button>
-        </form>
+      <br />
+      <button onClick={
+        () => setCount(prevCount => prevCount + 1)}>
+        Change Character
+      </button>
+      <pre>{JSON.stringify(starWarsData, null, 2)}</pre>
     </div>
   );
 }

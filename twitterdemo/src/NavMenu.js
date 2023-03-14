@@ -12,7 +12,8 @@ function NavMenu() {
             flex={1}
             sx={{ display: { xs: "none", sm: "flex" } }}
         >
-            <Stack direction={'column'} spacing="3">
+            <Stack direction={'column'} spacing="3" position="fixed"
+            >
 
                 <List>
                     <ListItemButton>
@@ -46,7 +47,11 @@ function NavMenu() {
                         <ListItemText primary="Logout" />
                     </ListItemButton>
                 </List>
-                <Button variant='outlined'>Tweet</Button>
+                <Button
+                    variant='contained'
+                    sx={{ maxWidth: "160px", borderRadius: "24px" }}>
+                    Tweet
+                </Button>
             </Stack>
 
         </Box>
